@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		29D504171A24492D00EFF44C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D504161A24492D00EFF44C /* main.m */; };
+		29D5041A1A24492D00EFF44C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D504191A24492D00EFF44C /* AppDelegate.m */; };
+		29D5041D1A24492D00EFF44C /* GoRatio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D5041B1A24492D00EFF44C /* GoRatio.xcdatamodeld */; };
+		29D504201A24492D00EFF44C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D5041F1A24492D00EFF44C /* ViewController.m */; };
+		29D504231A24492D00EFF44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29D504211A24492D00EFF44C /* Main.storyboard */; };
+		29D504251A24492D00EFF44C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29D504241A24492D00EFF44C /* Images.xcassets */; };
+		29D504281A24492D00EFF44C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29D504261A24492D00EFF44C /* LaunchScreen.xib */; };
+		29D504341A24492E00EFF44C /* GoRatioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D504331A24492E00EFF44C /* GoRatioTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29D5042E1A24492E00EFF44C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29D504091A24492D00EFF44C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29D504101A24492D00EFF44C;
+			remoteInfo = GoRatio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		29D504111A24492D00EFF44C /* GoRatio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoRatio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D504151A24492D00EFF44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29D504161A24492D00EFF44C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29D504181A24492D00EFF44C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		29D504191A24492D00EFF44C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		29D5041C1A24492D00EFF44C /* GoRatio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoRatio.xcdatamodel; sourceTree = "<group>"; };
+		29D5041E1A24492D00EFF44C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		29D5041F1A24492D00EFF44C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		29D504221A24492D00EFF44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		29D504241A24492D00EFF44C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		29D504271A24492D00EFF44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		29D5042D1A24492E00EFF44C /* GoRatioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoRatioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D504321A24492E00EFF44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29D504331A24492E00EFF44C /* GoRatioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoRatioTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29D5040E1A24492D00EFF44C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D5042A1A24492E00EFF44C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29D504081A24492D00EFF44C = {
+			isa = PBXGroup;
+			children = (
+				29D504131A24492D00EFF44C /* GoRatio */,
+				29D504301A24492E00EFF44C /* GoRatioTests */,
+				29D504121A24492D00EFF44C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		29D504121A24492D00EFF44C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29D504111A24492D00EFF44C /* GoRatio.app */,
+				29D5042D1A24492E00EFF44C /* GoRatioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29D504131A24492D00EFF44C /* GoRatio */ = {
+			isa = PBXGroup;
+			children = (
+				29D504181A24492D00EFF44C /* AppDelegate.h */,
+				29D504191A24492D00EFF44C /* AppDelegate.m */,
+				29D5041E1A24492D00EFF44C /* ViewController.h */,
+				29D5041F1A24492D00EFF44C /* ViewController.m */,
+				29D504211A24492D00EFF44C /* Main.storyboard */,
+				29D504241A24492D00EFF44C /* Images.xcassets */,
+				29D504261A24492D00EFF44C /* LaunchScreen.xib */,
+				29D5041B1A24492D00EFF44C /* GoRatio.xcdatamodeld */,
+				29D504141A24492D00EFF44C /* Supporting Files */,
+			);
+			path = GoRatio;
+			sourceTree = "<group>";
+		};
+		29D504141A24492D00EFF44C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29D504151A24492D00EFF44C /* Info.plist */,
+				29D504161A24492D00EFF44C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		29D504301A24492E00EFF44C /* GoRatioTests */ = {
+			isa = PBXGroup;
+			children = (
+				29D504331A24492E00EFF44C /* GoRatioTests.m */,
+				29D504311A24492E00EFF44C /* Supporting Files */,
+			);
+			path = GoRatioTests;
+			sourceTree = "<group>";
+		};
+		29D504311A24492E00EFF44C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29D504321A24492E00EFF44C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29D504101A24492D00EFF44C /* GoRatio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29D504371A24492E00EFF44C /* Build configuration list for PBXNativeTarget "GoRatio" */;
+			buildPhases = (
+				29D5040D1A24492D00EFF44C /* Sources */,
+				29D5040E1A24492D00EFF44C /* Frameworks */,
+				29D5040F1A24492D00EFF44C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoRatio;
+			productName = GoRatio;
+			productReference = 29D504111A24492D00EFF44C /* GoRatio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		29D5042C1A24492E00EFF44C /* GoRatioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29D5043A1A24492E00EFF44C /* Build configuration list for PBXNativeTarget "GoRatioTests" */;
+			buildPhases = (
+				29D504291A24492E00EFF44C /* Sources */,
+				29D5042A1A24492E00EFF44C /* Frameworks */,
+				29D5042B1A24492E00EFF44C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29D5042F1A24492E00EFF44C /* PBXTargetDependency */,
+			);
+			name = GoRatioTests;
+			productName = GoRatioTests;
+			productReference = 29D5042D1A24492E00EFF44C /* GoRatioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29D504091A24492D00EFF44C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Ethan Keiser";
+				TargetAttributes = {
+					29D504101A24492D00EFF44C = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					29D5042C1A24492E00EFF44C = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 29D504101A24492D00EFF44C;
+					};
+				};
+			};
+			buildConfigurationList = 29D5040C1A24492D00EFF44C /* Build configuration list for PBXProject "GoRatio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 29D504081A24492D00EFF44C;
+			productRefGroup = 29D504121A24492D00EFF44C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29D504101A24492D00EFF44C /* GoRatio */,
+				29D5042C1A24492E00EFF44C /* GoRatioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29D5040F1A24492D00EFF44C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D504231A24492D00EFF44C /* Main.storyboard in Resources */,
+				29D504281A24492D00EFF44C /* LaunchScreen.xib in Resources */,
+				29D504251A24492D00EFF44C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D5042B1A24492E00EFF44C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29D5040D1A24492D00EFF44C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D5041A1A24492D00EFF44C /* AppDelegate.m in Sources */,
+				29D5041D1A24492D00EFF44C /* GoRatio.xcdatamodeld in Sources */,
+				29D504201A24492D00EFF44C /* ViewController.m in Sources */,
+				29D504171A24492D00EFF44C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D504291A24492E00EFF44C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D504341A24492E00EFF44C /* GoRatioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29D5042F1A24492E00EFF44C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29D504101A24492D00EFF44C /* GoRatio */;
+			targetProxy = 29D5042E1A24492E00EFF44C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		29D504211A24492D00EFF44C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29D504221A24492D00EFF44C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		29D504261A24492D00EFF44C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29D504271A24492D00EFF44C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		29D504351A24492E00EFF44C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		29D504361A24492E00EFF44C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29D504381A24492E00EFF44C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GoRatio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		29D504391A24492E00EFF44C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GoRatio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		29D5043B1A24492E00EFF44C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GoRatioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoRatio.app/GoRatio";
+			};
+			name = Debug;
+		};
+		29D5043C1A24492E00EFF44C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GoRatioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoRatio.app/GoRatio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		29D5040C1A24492D00EFF44C /* Build configuration list for PBXProject "GoRatio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29D504351A24492E00EFF44C /* Debug */,
+				29D504361A24492E00EFF44C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29D504371A24492E00EFF44C /* Build configuration list for PBXNativeTarget "GoRatio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29D504381A24492E00EFF44C /* Debug */,
+				29D504391A24492E00EFF44C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		29D5043A1A24492E00EFF44C /* Build configuration list for PBXNativeTarget "GoRatioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29D5043B1A24492E00EFF44C /* Debug */,
+				29D5043C1A24492E00EFF44C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		29D5041B1A24492D00EFF44C /* GoRatio.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				29D5041C1A24492D00EFF44C /* GoRatio.xcdatamodel */,
+			);
+			currentVersion = 29D5041C1A24492D00EFF44C /* GoRatio.xcdatamodel */;
+			path = GoRatio.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 29D504091A24492D00EFF44C /* Project object */;
+}
