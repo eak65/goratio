@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="goRatioModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="goRatioModelStoreContainer">
+    <EntitySet Name="Users" EntityType="goRatioModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Bars" EntityType="goRatioModel.Store.Bars" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserBar" Association="goRatioModel.Store.UserBar">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Bar" EntitySet="Bars" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Location" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="DeviceToken" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeviceType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="deviceForeground" Type="bit" Nullable="false" />
+    <Property Name="AllowPush" Type="bit" Nullable="false" />
+    <Property Name="DUID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastUpdatedLocation" Type="datetime" Nullable="false" />
+    <Property Name="Bar_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Bars">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="MaleCount" Type="int" Nullable="false" />
+    <Property Name="FemaleCount" Type="int" Nullable="false" />
+    <Property Name="Vicinity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlaceId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Reference" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Icon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserBar">
+    <End Role="User" Type="goRatioModel.Store.Users" Multiplicity="*" />
+    <End Role="Bar" Type="goRatioModel.Store.Bars" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Bar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

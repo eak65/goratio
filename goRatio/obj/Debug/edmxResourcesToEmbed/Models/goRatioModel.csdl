@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="goRatioModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="goRatioModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="goRatioModel.User" />
+    <EntitySet Name="Bars" EntityType="goRatioModel.Bar" />
+    <AssociationSet Name="UserBar" Association="goRatioModel.UserBar">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Bar" EntitySet="Bars" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Location" Type="Geography" Nullable="false" />
+    <Property Name="DeviceToken" Type="String" Nullable="false" />
+    <Property Name="Gender" Type="String" Nullable="false" />
+    <Property Name="DeviceType" Type="String" Nullable="false" />
+    <Property Name="deviceForeground" Type="Boolean" Nullable="false" />
+    <Property Name="AllowPush" Type="Boolean" Nullable="false" />
+    <Property Name="DUID" Type="String" Nullable="false" />
+    <Property Name="LastUpdatedLocation" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Bar" Relationship="goRatioModel.UserBar" FromRole="User" ToRole="Bar" />
+  </EntityType>
+  <EntityType Name="Bar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Location" Type="Geography" Nullable="false" />
+    <Property Name="MaleCount" Type="Int32" Nullable="false" />
+    <Property Name="FemaleCount" Type="Int32" Nullable="false" />
+    <Property Name="Vicinity" Type="String" Nullable="false" />
+    <Property Name="PlaceId" Type="String" Nullable="false" />
+    <Property Name="Rating" Type="String" Nullable="false" />
+    <Property Name="Reference" Type="String" Nullable="false" />
+    <Property Name="Icon" Type="String" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="goRatioModel.UserBar" FromRole="Bar" ToRole="User" />
+  </EntityType>
+  <Association Name="UserBar">
+    <End Type="goRatioModel.User" Role="User" Multiplicity="*" />
+    <End Type="goRatioModel.Bar" Role="Bar" Multiplicity="0..1" />
+  </Association>
+</Schema>

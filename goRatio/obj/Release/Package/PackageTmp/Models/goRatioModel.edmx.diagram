@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3f4eafef0f049019b6380230c85aad2" Name="Diagram1" >
+        <EntityTypeShape EntityType="goRatioModel.User" Width="1.5" PointX="5.125" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="goRatioModel.Bar" Width="1.5" PointX="8.375" PointY="2.5" />
+        <AssociationConnector Association="goRatioModel.UserBar" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
