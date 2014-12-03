@@ -5,9 +5,15 @@
 //  Created by Ethan Keiser on 11/25/14.
 //  Copyright (c) 2014 Ethan Keiser. All rights reserved.
 //
-
+#import "DataManager.h"
 #import "AppDelegate.h"
-
+#import "BarTableController.h"
+#import "RequestManager.h"
+#import "Device.h"
+#import "InitialLoadingView.h"
+//#import "DoAlertView.h"
+#import "GenderSetting.h"
+#import "constant.h"
 @interface AppDelegate ()
 
 @end
@@ -17,8 +23,205 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setUpBackGroundLocation];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    UITabBarController *tabbar=[[UITabBarController alloc]init];
+    BarTableController * bar =[[BarTableController alloc] init];
+    GenderSetting* gender=[[GenderSetting alloc]init];
+    
+    UINavigationController * nav=[[UINavigationController alloc] initWithRootViewController:bar];
+    bar.title=@"Bars";
+    gender.title=@"Settings";
+    [tabbar setViewControllers:[NSArray arrayWithObjects:gender,nav, nil]];
+    tabbar.selectedIndex=1;
+
+    self.window.rootViewController=tabbar;
+    
+    //[self getDeviceToken];
+
+    if([DataManager shared].userId) // if userid Exist show load screen
+    {
+        [self startLocationIntervalUpdate];
+        
+    }
+  
+    [self.window makeKeyAndVisible];
+
+    
+    
+
+    
     return YES;
 }
+
+
+
+
+-(void)getDeviceToken
+{
+    if(IS_OS_8_OR_LATER){
+        //Right, that is the point
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge
+                                                                                             |UIUserNotificationTypeSound
+                                                                                             |UIUserNotificationTypeAlert) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+    else{
+        //register to receive notifications
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
+}
+
+
+
+-(void)setUpBackGroundLocation
+{
+    UIAlertView * alert;
+    
+    //We have to make sure that the Background App Refresh is enable for the Location updates to work in the background.
+    if([[UIApplication sharedApplication] backgroundRefreshStatus] == UIBackgroundRefreshStatusDenied){
+        
+        alert = [[UIAlertView alloc]initWithTitle:@""
+                                          message:@"The app doesn't work without the Background App Refresh enabled. To turn it on, go to Settings > General > Background App Refresh"
+                                         delegate:nil
+                                cancelButtonTitle:@"Ok"
+                                otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }else if([[UIApplication sharedApplication] backgroundRefreshStatus] == UIBackgroundRefreshStatusRestricted){
+        
+        alert = [[UIAlertView alloc]initWithTitle:@""
+                                          message:@"The functions of this app are limited because the Background App Refresh is disable."
+                                         delegate:nil
+                                cancelButtonTitle:@"Ok"
+                                otherButtonTitles:nil, nil];
+        [alert show];
+        
+    } else{
+        
+        self.locationTracker = [[LocationTracker alloc]init];
+        [self.locationTracker startLocationTracking];
+        
+        //Send the best location to server every 60 seconds
+        //You may adjust the time interval depends on the need of your app.
+        
+    }
+    
+}
+-(void)startLocationIntervalUpdate
+{
+    [self.locationTracker updateLocationToServer];
+
+    NSTimeInterval time = 60.0;
+    self.locationUpdateTimer =
+    [NSTimer scheduledTimerWithTimeInterval:time
+                                     target:self
+                                   selector:@selector(updateLocation)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+
+
+
+-(void)updateLocation {
+    NSLog(@"updateLocation");
+    
+    [self.locationTracker updateLocationToServer];
+}
+
+
+
+
+
+
+
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+    }
+    else if ([identifier isEqualToString:@"answerAction"]){
+    }
+}
+#endif
+
+// If I get the token tell the server who I am, get my UserId
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+    
+    
+    
+    Device * device= [[Device alloc]init];
+    
+    device.deviceToken=[NSString stringWithFormat:@"%@",deviceToken ];
+    device.deviceType=@"ios";
+    device.foreground=YES;
+    [[RequestManager shared] sendDeviceToken:device success:^{
+        
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error did not send token");
+    }];
+
+    //  [self setDevice:device];
+    
+    //  device.deviceId=[userDefaults objectForKey:@"deviceId"];
+    //  if(device.deviceId)
+    // {
+    //     [DataManager shared].device=[[Device alloc]initWith:userDefaults];
+    // }
+    // else
+    // {
+    
+    
+    //}
+    
+    
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
+}
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -36,6 +239,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self.locationTracker updateLocationToServer];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
