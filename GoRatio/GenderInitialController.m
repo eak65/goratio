@@ -8,6 +8,7 @@
 
 #import "GenderInitialController.h"
 //#import "DoAlertView.h"
+#import "AppDelegate.h"
 @interface GenderInitialController ()
 
 @end
@@ -38,7 +39,10 @@
 //}];
     [[RequestManager shared] createUsersuccess:^{
    //     [alert hideAlert];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        AppDelegate *appdelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appdelegate.hubConnection start];
+        [self.navigationController pushViewController:appdelegate.tabbarController animated:YES];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
   //      [alert hideAlert];
     //    DoAlertView *errorAlert=[[DoAlertView alloc]init];

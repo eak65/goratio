@@ -11,14 +11,30 @@
 #import "RequestManager.h"
 #import "Device.h"
 #import "InitialLoadingView.h"
+#import "MessageManager.h"
 //#import "DoAlertView.h"
 #import "GenderSetting.h"
 #import "constant.h"
 @interface AppDelegate ()
+{
+    BOOL resigned;
+}
 
 @end
 
 @implementation AppDelegate
+
+-(void)updateConnectionString:(id) sender
+{
+    if([DataManager shared].userId){
+        
+        
+        NSString * s=    [[DataManager shared].userId stringValue];
+        [self.chat invoke:@"updateConnection" withArgs:@[s] completionHandler:^(id response, NSError *error) {
+            
+        }];
+    }
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -27,18 +43,29 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    UITabBarController *tabbar=[[UITabBarController alloc]init];
+    self.tabbarController=[[UITabBarController alloc]init];
     BarTableController * bar =[[BarTableController alloc] init];
     GenderSetting* gender=[[GenderSetting alloc]init];
     
     UINavigationController * nav=[[UINavigationController alloc] initWithRootViewController:bar];
     bar.title=@"Bars";
     gender.title=@"Settings";
-    [tabbar setViewControllers:[NSArray arrayWithObjects:gender,nav, nil]];
-    tabbar.selectedIndex=1;
+    [self.tabbarController setViewControllers:[NSArray arrayWithObjects:gender,nav, nil]];
+    self.tabbarController.selectedIndex=1;
+    if(![DataManager shared].userId)
+    {
+        
+        InitialLoadingView * initial=[[InitialLoadingView alloc]init];
+        
+        UINavigationController * nav=[[UINavigationController alloc]initWithRootViewController:initial];
+        [nav setNavigationBarHidden:YES];
+        self.window.rootViewController=nav;
+    }
+    else{
 
-    self.window.rootViewController=tabbar;
-    
+    self.window.rootViewController=self.tabbarController;
+    }
+    [self setUpSignalR];
     //[self getDeviceToken];
 
     if([DataManager shared].userId) // if userid Exist show load screen
@@ -56,6 +83,17 @@
     return YES;
 }
 
+-(void)setUpSignalR
+{
+    self.hubConnection = [SRHubConnection connectionWithURLString:KBaseUrl];
+    self.hubConnection.delegate=self;
+    
+    self.chat = [self.hubConnection createHubProxy:@"signalrHub"];
+    [self.chat on:@"feedUpdate" perform:[MessageManager shared] selector:@selector(feedUpdate:)];
+    [self.chat on:@"updateConnectionString" perform:self selector:@selector(updateConnectionString:)];
+
+   
+}
 
 
 
@@ -76,6 +114,95 @@
 }
 
 
+- (void)SRConnectionDidOpen:(id <SRConnectionInterface>)connection
+{
+    NSLog(@"connection Open State Number %d",[connection state]);
+    
+    if([DataManager shared].userId){
+        [self updateConnectionString:nil];
+      
+    }
+    else
+    {
+        [self.hubConnection stop];
+    }
+    
+}
+
+- (void)SRConnectionWillReconnect:(id <SRConnectionInterface>)connection
+{
+    NSLog(@"connection will reconnect %d",[connection state]);
+    //   [self.hubConnection stop];
+    
+}
+
+- (void)SRConnectionDidReconnect:(id <SRConnectionInterface>)connection
+{
+    NSLog(@"connection did Reconnect %d",[connection state]);
+    
+}
+- (void)SRConnection:(id <SRConnectionInterface>)connection didReceiveData:(id)data
+{
+    NSLog(@"connection did recieve data %d",[connection state]);
+    NSLog(@"%@",data);
+    
+}
+
+- (void)SRConnectionDidClose:(id <SRConnectionInterface>)connection
+{    NSLog(@"connection did close %d",[connection state]);
+    
+    
+    //  UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Closed" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    //   [alert show];
+    
+    if([DataManager shared].userId&&!resigned){
+        //  if(debug==0)
+        //  else
+        //    [self.hubConnection start];
+        //  [self reconnection];
+        NSLog(@"DATE TIME : %@",[NSDate date]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.disconnectTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                                                    target:self selector:@selector(reopen) userInfo:nil repeats: NO];
+        });
+        
+
+    }
+    else if(resigned){
+        NSLog(@"%@",[DataManager shared].device);
+        //[[DataManager shared].device resignForeground];
+    }
+    
+}
+-(void)reopen
+{
+    [self.hubConnection start];
+    
+}
+
+- (void)SRConnection:(id <SRConnectionInterface>)connection didReceiveError:(NSError *)error
+{
+    NSLog(@"ERROR MESSAGE SIGNALR %@ %ld",[error.userInfo objectForKey:@"NSLocalizedDescription"],(long)error.code);
+
+    if(error.code==0)
+    {
+
+    }
+}
+
+
+- (void)SRConnection:(id <SRConnectionInterface>)connection didChangeState:(connectionState)oldState newState:(connectionState)newState
+{
+    NSLog(@"old state %d",oldState);
+    NSLog(@"%@",[connection connectionId]);
+    NSLog(@"new state %d",newState);
+    
+}
+
+- (void)SRConnectionDidSlow:(id <SRConnectionInterface>)connection
+{
+    
+}
 
 -(void)setUpBackGroundLocation
 {
@@ -226,11 +353,15 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    resigned=YES;
+    [self.hubConnection stop];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -239,7 +370,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    resigned=NO;
+    if([DataManager shared].userId)
+    {
+    [self.hubConnection start];
     [self.locationTracker updateLocationToServer];
+
+    }
 
 }
 

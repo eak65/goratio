@@ -35,7 +35,9 @@
         
         if(operation.response.statusCode==202) // userid
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            AppDelegate *delegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+            
+            [self.navigationController pushViewController:delegate.tabbarController animated:YES];
         }
         else if(operation.response.statusCode==200) // no userid
         {

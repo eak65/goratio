@@ -20,6 +20,7 @@
 		2983AAAD1A2DC42E004094B1 /* rating-star-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2983AAA91A2DC42E004094B1 /* rating-star-off@2x.png */; };
 		2983AAAE1A2DC42E004094B1 /* rating-star-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2983AAAA1A2DC42E004094B1 /* rating-star-on.png */; };
 		2983AAAF1A2DC42E004094B1 /* rating-star-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2983AAAB1A2DC42E004094B1 /* rating-star-on@2x.png */; };
+		2983AAB21A2EA147004094B1 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2983AAB11A2EA147004094B1 /* MessageManager.m */; };
 		29D504171A24492D00EFF44C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D504161A24492D00EFF44C /* main.m */; };
 		29D5041A1A24492D00EFF44C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D504191A24492D00EFF44C /* AppDelegate.m */; };
 		29D5041D1A24492D00EFF44C /* GoRatio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D5041B1A24492D00EFF44C /* GoRatio.xcdatamodeld */; };
@@ -63,6 +64,8 @@
 		2983AAA91A2DC42E004094B1 /* rating-star-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-star-off@2x.png"; sourceTree = "<group>"; };
 		2983AAAA1A2DC42E004094B1 /* rating-star-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-star-on.png"; sourceTree = "<group>"; };
 		2983AAAB1A2DC42E004094B1 /* rating-star-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-star-on@2x.png"; sourceTree = "<group>"; };
+		2983AAB01A2EA147004094B1 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		2983AAB11A2EA147004094B1 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		29D504111A24492D00EFF44C /* GoRatio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoRatio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D504151A24492D00EFF44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D504161A24492D00EFF44C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				291E58EC1A2473AF00ACF9B5 /* InitialLoadingView.xib */,
 				29F00A121A2BF81400FB8A0E /* Bar.h */,
 				29F00A131A2BF81400FB8A0E /* Bar.m */,
+				2983AAB01A2EA147004094B1 /* MessageManager.h */,
+				2983AAB11A2EA147004094B1 /* MessageManager.m */,
 			);
 			path = GoRatio;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				296D85A31A2D88BA00B8F489 /* BarDetailedController.m in Sources */,
 				291E58ED1A2473AF00ACF9B5 /* InitialLoadingView.m in Sources */,
 				29D5045A1A24541500EFF44C /* LocationTracker.m in Sources */,
+				2983AAB21A2EA147004094B1 /* MessageManager.m in Sources */,
 				29D504441A244C0700EFF44C /* BarTableController.m in Sources */,
 				29F00A101A2BF47900FB8A0E /* BarCell.m in Sources */,
 				29D5044A1A244DF500EFF44C /* DataManager.m in Sources */,

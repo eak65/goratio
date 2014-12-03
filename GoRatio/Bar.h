@@ -16,7 +16,7 @@
 @property(nonatomic,strong)NSNumber * maleCount;
 @property(nonatomic,strong)NSNumber * Id;
 @property(nonatomic,strong)CLLocation * location;
-
+@property(nonatomic,assign)int total;
 @property(nonatomic,strong)NSNumber * femaleCount;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;

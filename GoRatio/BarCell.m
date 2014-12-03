@@ -36,7 +36,14 @@
             {
                 
                 self=(BarCell *)currentObject;
-            
+                self.negativeArrow.hidden=YES;
+                self.positiveArrow.hidden=YES;
+                self.clipsToBounds=YES;
+                total=0;
+                self.tickerOverlay.layer.cornerRadius=.5;
+                
+                
+                
                 break;
                 
             }
@@ -45,28 +52,34 @@
     return self;
 }
 
--(void)setBar:(Bar *)bar
+-(void)setBar:(Bar *)tbar
 {
-    self.barName.text=bar.name;
-    self.address.text=bar.vicinity;
+    bar=tbar;
+    total=bar.total;
+    self.barName.text=tbar.name;
+    self.address.text=tbar.vicinity;
     self.starView.backgroundColor=[UIColor clearColor];
     self.backgroundColor=[UIColor midnightBlueColor];
-    int total= [bar.maleCount intValue]+[bar.femaleCount intValue];
-    total =60;
-    self.totalPeopleLabel.text=[NSString stringWithFormat:@"%d",total];
+    self.tickerNumber.text=[NSString stringWithFormat:@"%d",total ];
+
+//    self.totalPeopleLabel.text=[NSString stringWithFormat:@"%d",total];
     [self setStarValue:[NSNumber numberWithInt:total]];
  
 }
 
--(void)showPositiveIndicator
+-(void)showPositiveAmount:(int)amount
 {
     [self showPositiveColor];
+
+    self.tickerNumber.text=[NSString stringWithFormat:@"%d",bar.total ];
+    
     self.positiveArrow.hidden=NO;
     self.negativeArrow.hidden=YES;
 }
--(void)showNegativeIndicator
+-(void)showNegativeAmount:(int)amount
 {
     [self showNegativeColor];
+    self.tickerNumber.text=[NSString stringWithFormat:@"%d",bar.total];
     self.positiveArrow.hidden=YES;
     self.negativeArrow.hidden=NO;
 }
@@ -74,17 +87,17 @@
 {
     CABasicAnimation* fade = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
     fade.fromValue = (id)[UIColor whiteColor].CGColor;
-    fade.toValue = (id)[UIColor amethystColor].CGColor;
-    [fade setDuration:1];
-    [self.layer addAnimation:fade forKey:@"fadeAnimation"];
+    fade.toValue = (id)[UIColor pomegranateColor].CGColor;
+    [fade setDuration:.5];
+    [self.tickerOverlay.layer addAnimation:fade forKey:@"fadeAnimation"];
 }
 -(void)showPositiveColor
 {
     CABasicAnimation* fade = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
     fade.fromValue = (id)[UIColor whiteColor].CGColor;
     fade.toValue = (id)[UIColor turquoiseColor].CGColor;
-    [fade setDuration:.4];
-    [self.layer addAnimation:fade forKey:@"fadeAnimation"];
+    [fade setDuration:.5];
+    [self.tickerOverlay.layer addAnimation:fade forKey:@"fadeAnimation"];
 }
 -(void)setStarValue:(NSNumber *)num
 {

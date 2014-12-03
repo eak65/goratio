@@ -11,6 +11,7 @@
 #import "GenderController.h"
 #import "BarDetailedController.h"
 #import "DataManager.h"
+#import "MessageManager.h"
 #import "InitialLoadingView.h"
 @interface BarTableController ()
 {
@@ -45,8 +46,53 @@
     [self.tableView reloadData];
     
 }
+-(void)incrementBar:(NSNotification *)sender
+{
+  int barId  =[[sender.object objectForKey:@"barId"] intValue];
+    int amount =[[sender.object objectForKey:@"amount"]intValue];
+   
+    [barArray enumerateObjectsWithOptions:NSEnumerationConcurrent
+                            usingBlock:^(Bar *item, NSUInteger idx, BOOL *stop)
+    {
+    
+        if([item.Id intValue]==barId)
+        {
+          BarCell * barcell=  (BarCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+            item.total+=amount;
+            [barcell showPositiveAmount:amount];
+            
+        }
+    }];
+    //   sender
+}
+-(void)decrementbar:(NSNotification*)sender
+{
+    int barId  =[[sender.object objectForKey:@"barId"] intValue];
+    int amount =[[sender.object objectForKey:@"amount"]intValue];
+    
+    
+    [barArray enumerateObjectsWithOptions:NSEnumerationConcurrent
+                               usingBlock:^(Bar *item, NSUInteger idx, BOOL *stop)
+     {
+         
+         if([item.Id intValue]==barId)
+         {
+             BarCell * barcell=  (BarCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+             item.total-=amount;
+
+             [barcell showNegativeAmount:amount];
+
+             
+         }
+     }];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(incrementBar:) name:@"incrementBar" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(decrementbar:) name:@"decrementBar" object:nil];
+
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor wetAsphaltColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
@@ -71,15 +117,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if(![DataManager shared].userId)
-    {
-   
-        InitialLoadingView * initial=[[InitialLoadingView alloc]init];
-
-        UINavigationController * nav=[[UINavigationController alloc]initWithRootViewController:initial];
-        [nav setNavigationBarHidden:YES];
-        [self presentViewController:nav animated:YES completion:nil];
-    }
+  
 }
 #pragma mark - Table view data source
 
@@ -117,7 +155,7 @@
 }
 -(CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65.0f;
+    return 95.0f;
 }
 
 

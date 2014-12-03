@@ -25,8 +25,7 @@ static DataManager *manager;
 {
     self.userId=[NSNumber numberWithInteger:[[dict objectForKey:@"Id"] intValue]];
     NSString *gen=[dict objectForKey:@"Gender"];
-    if([gen isEqualToString:@"F"]) // lady
-        
+    if([gen isEqualToString:@"f"]) // lady
     {
         self.gender=[NSNumber numberWithInt:1];
     }
